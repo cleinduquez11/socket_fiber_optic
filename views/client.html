@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Fiber Optics</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+	
+	<hr>
+	<!-- <center> -->
+	<div>
+		<h1>Sensor Readings</h1>
+	</div>
+	<br>
+	<br>
+
+	<ul class="outer-container">
+
+		<!-- 
+			<br>
+			<br>
+			<br>
+			<br> -->
+		<li class="container">
+			<p class="sensors" id="WaterTemp"></p>
+			<br>
+			<b class="labels">Water Temperature</b>
+
+			</label>
+			<br>
+		</li>
+
+
+
+		<!-- <br>
+			<br> -->
+		<li class="container">
+			<p  class="sensors" id="phVal"></p>
+			<br>
+			<b class="labels">pH Value</b>
+
+			</label>
+			<br>
+		</li>
+
+		<!-- <br>
+			<br> -->
+		<li class="container">
+			<p  class="sensors" id="EcVal"></p>
+			<br>
+			<b class="labels">EC Value</b>
+
+			</label>
+			<br>
+		</li>
+		<li class="container">
+			<p  class="sensors" id="Humid"></p>
+			<br>
+			<b class="labels">Humidity</b>
+
+			</label>
+			<br>
+		</li>
+		<li class="container">
+			<p  class="sensors" id="RoomTemp"></p>
+			<br>
+			<b class="labels">Room Temperature</b>
+
+			</label>
+			<br>
+		</li>
+
+
+	</ul>
+
+	<!-- </center> -->
+
+
+	<br>
+
+
+
+
+
+	<br>
+	<br>
+	<hr>
+	<!-- <center> -->
+	<div>
+		<h1>Optic Fiber Control Panel</h1>
+	</div>
+	<br>
+	<br>
+
+	<ul class="outer-container">
+
+		<!-- 
+			<br>
+			<br>
+			<br>
+			<br> -->
+		<li class="container">
+			<b>Fan Switch</b>
+			<br><br>
+			<input type="checkbox" id="switch" class="checkbox" />
+			<label for="switch" class="toggle">
+				<p>OFF &nbsp ON</p>
+			</label>
+			<br>
+		</li>
+
+
+
+		<!-- <br>
+			<br> -->
+		<li class="container">
+			<b>Light Switch</b>
+			<br><br>
+			<input type="checkbox" id="switch1" class="checkbox1" />
+			<label for="switch1" class="toggle">
+				<p>OFF &nbsp ON</p>
+			</label>
+			<br>
+		</li>
+
+		<!-- <br>
+			<br> -->
+		<li class="container">
+			<b>Pump Switch</b>
+			<br><br>
+			<input type="checkbox" id="switch2" class="checkbox2" />
+			<label for="switch2" class="toggle">
+				<p>OFF &nbsp ON</p>
+			</label>
+			<br>
+		</li>
+		<li class="container">
+			<!-- <br>
+				<br> -->
+			<b>Mist Switch</b>
+			<br><br>
+			<input type="checkbox" id="switch3" class="checkbox3" />
+			<label for="switch3" class="toggle">
+				<p>OFF &nbsp ON</p>
+			</label>
+			<br>
+		</li>
+
+
+	</ul>
+
+	<!-- </center> -->
+
+
+	<br>
+	<hr>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="client.js"></script>
+</body>
+
+</html>
