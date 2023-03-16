@@ -65,18 +65,22 @@ mistController.addEventListener('change', function (e) {
         //console.log(false);
     }
 });
-socket.on('fan', (arg) => {
-    if (arg == true) {
-        fanController.setAttribute('Checked', 'Checked');
-    } else {
-        fanController.removeAttribute('Checked');
-    }
 
-});
+    socket.on('fan_status', (arg) => {
+        // console.log(arg);
+        if (arg == 'ON') {
+            fanController.setAttribute('Checked', 'Checked');
+        } else {
+            fanController.removeAttribute('Checked');
+        }
+    
+    });
 
 
-socket.on('light', (arg) => {
-    if (arg == true) {
+
+
+socket.on('light_status', (arg) => {
+    if (arg == 'ON') {
         lightController.setAttribute('Checked', 'Checked');
     } else {
         lightController.removeAttribute('Checked');
@@ -84,16 +88,16 @@ socket.on('light', (arg) => {
 
 });
 
-socket.on('pump', (arg) => {
-    if (arg == true) {
+socket.on('pump_status', (arg) => {
+    if (arg == 'ON') {
         pumpController.setAttribute('Checked', 'Checked');
     } else {
         pumpController.removeAttribute('Checked');
     }
 
 });
-socket.on('mist', (arg) => {
-    if (arg == true) {
+socket.on('mist_status', (arg) => {
+    if (arg == 'ON') {
         mistController.setAttribute('Checked', 'Checked');
     } else {
         mistController.removeAttribute('Checked');
@@ -102,29 +106,50 @@ socket.on('mist', (arg) => {
 });
 
 socket.on('water_temp', (arg) => {
-    water_tempValue.innerHTML = arg + '&#8451';
+    water_tempValue.innerHTML =  arg + '&#8451';
+    if (arg<=20) {
+        water_tempValue.style.color = '#48D1CC';
+    } else {
+        water_tempValue.style.color = 'red';
+    }
    // console.log(arg)
 });
 
 socket.on('ph_value', (arg) => {
     ph_Value.innerHTML = arg;
+    if (arg<7) {
+        ph_Value.style.color = '#48D1CC';
+    } else {
+        ph_Value.style.color = 'red';
+    }
    // console.log(arg)
 });
 
 
 socket.on('ec_value', (arg) => {
     ec_Value.innerHTML = arg;
+  
   //  console.log(arg)
 });
 
 socket.on('humid', (arg) => {
     humid_Value.innerHTML = arg + '%';
+    if (arg>79) {
+        humid_Value.style.color = '#48D1CC';
+    } else {
+        humid_Value.style.color = 'red';
+    }
    // console.log(arg)
 });
 
 
 socket.on('room_temp', (arg) => {
     room_tempValue.innerHTML = arg + '&#8451';
+    if (arg<=20) {
+        room_tempValue.style.color = '#48D1CC';
+    } else {
+        room_tempValue.style.color = 'red';
+    }
   //  console.log(arg)
 });
 

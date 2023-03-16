@@ -12,6 +12,7 @@ const io = require("socket.io")(httpServer, {
 });
 
 var mysql = require('mysql');
+const { send } = require("process");
 
 var con = mysql.createConnection({
     host: "localhost",
@@ -28,16 +29,58 @@ con.connect(function (err) {
 
 //var request=require('request');
 
-app.get('/', function (req, res) {
+app.get('/api', function (req, res) {
 
-    res.send('Welcome');
+    res.send('Nothing To see here');
+    // console.log(req)
     con.query(`INSERT INTO sensorreadings1 ( id, Water_Temperature, Ph_Value,Ec_Value) VALUES (?,?, ?, ?);`,[null,req.query.water_temp,req.query.ph_val,req.query.ec_val], function (err, result, fields) {
-    con.query(`INSERT INTO sensorreadings2 (id, Humidity, Room_Temp) VALUES (?, ? ,?);`,[null,req.query.humid,req.query.room_temp]) 
-     
+
         // if (err) throw err;
 
         //console.log(result[0]['fan_status']);
     });
+    con.query(`INSERT INTO sensorreadings2 (id, Humidity, Room_Temp) VALUES (?, ? ,?);`,[null,req.query.humid,req.query.room_temp], function (err, result, fields) {
+        if (req.query.room_temp !=null ) {
+            con.query("SELECT * FROM `status`", function (err, result, fields) {
+
+              if (req.query.room_temp >= 26 && (result[0]['fan_status'] == "ON")) {
+
+                const url = "http://192.168.1.245/cm?cmnd=Power%20On";
+                request.get(url, (error, response, body) => {});
+              } else {
+                const url = "http://192.168.1.245/cm?cmnd=Power%20Off";
+                request.get(url, (error, response, body) => {});
+                   
+              }
+            });
+                 
+        }
+        if (req.query.humid !=null) {
+            con.query("SELECT * FROM `status`", function (err, result, fields) {
+
+              if (req.query.humid <= 80 && result[0]['mist_status'] == "ON") {
+                const url = "http://192.168.1.107/cm?cmnd=Power%20On";
+                request.get(url, (error, response, body) => {});
+              } else {
+                const url = "http://192.168.1.107/cm?cmnd=Power%20Off";
+                request.get(url, (error, response, body) => {});
+              }
+
+            });
+            
+        }
+
+    });
+
+   
+
+
+
+    
+ 
+
+    
+
    // console.log(req);
 });
 
@@ -57,10 +100,7 @@ io.sockets.on("connection", socket => {
 
             //console.log(result[0]['fan_status']);
         });
-    }, 2000);
 
-
-    setInterval(() => {
         con.query("SELECT * FROM `sensorreadings2` ORDER BY `id` DESC", function (err, result, fields) {
             // if (err) throw err;
             io.emit("humid", result[0]['Humidity']);
@@ -68,13 +108,43 @@ io.sockets.on("connection", socket => {
 
             //console.log(result[0]['fan_status']);
         });
+
+        con.query("SELECT * FROM `status`", function (err, result, fields) {
+            // if (err) throw err;
+            io.emit("fan_status",result[0]['fan_status']);
+            io.emit("light_status",result[0]['light_status']);
+            io.emit("pump_status",result[0]['pump_status']);
+            io.emit("mist_status",result[0]['mist_status']);
+
+            // console.log(result[0]);
+
+            //console.log(result[0]['fan_status']);
+        });
+
+
     }, 2000);
+
+
+    // setInterval(() => {
+    //     con.query("SELECT * FROM `sensorreadings2` ORDER BY `id` DESC", function (err, result, fields) {
+    //         // if (err) throw err;
+    //         io.emit("humid", result[0]['Humidity']);
+    //         io.emit("room_temp", result[0]['Room_Temp']);
+
+    //         //console.log(result[0]['fan_status']);
+    //     });
+    // }, 2000);
 
     socket.on("fan", (arg) => {
 
         if (arg == true) {
             io.emit("fan", arg);
             const url = "http://192.168.1.245/cm?cmnd=Power%20On";
+            con.query(`UPDATE status SET fan_status = 'ON' WHERE status.id = 1;`, function (err, result, fields) {
+    
+                // if (err) throw err;
+                //console.log(result[0]['fan_status']);
+            });
 
             request.get(url, (error, response, body) => {
           //      console.log(response)
@@ -86,6 +156,12 @@ io.sockets.on("connection", socket => {
         else {
             io.emit("fan", arg);
             const url = "http://192.168.1.245/cm?cmnd=Power%20Off";
+            con.query(` UPDATE status SET fan_status = 'OFF' WHERE status.id = 1;`, function (err, result, fields) {
+    
+                // if (err) throw err;
+                //console.log(result[0]['fan_status']);
+            });
+           
 
             request.get(url, (error, response, body) => {
              //   console.log(response)
@@ -102,6 +178,11 @@ io.sockets.on("connection", socket => {
         if (arg == true) {
             io.emit("light", arg);
             const url = "http://192.168.1.130/cm?cmnd=Power%20On";
+            con.query(` UPDATE status SET light_status = 'ON' WHERE status.id = 1;`, function (err, result, fields) {
+    
+                // if (err) throw err;
+                //console.log(result[0]['fan_status']);
+            });
 
             request.get(url, (error, response, body) => {
              //   console.log(response)
@@ -112,6 +193,11 @@ io.sockets.on("connection", socket => {
         }
         else {
             io.emit("light", arg);
+            con.query(` UPDATE status SET light_status = 'OFF' WHERE status.id = 1;`, function (err, result, fields) {
+    
+                // if (err) throw err;
+                //console.log(result[0]['fan_status']);
+            });
             const url = "http://192.168.1.130/cm?cmnd=Power%20Off";
 
             request.get(url, (error, response, body) => {
@@ -127,6 +213,11 @@ io.sockets.on("connection", socket => {
         if (arg == true) {
             io.emit("pump", arg);
             const url = "http://192.168.1.188/cm?cmnd=Power%20On";
+            con.query(` UPDATE status SET pump_status = 'ON' WHERE status.id = 1;`, function (err, result, fields) {
+    
+                // if (err) throw err;
+                //console.log(result[0]['fan_status']);
+            });
 
             request.get(url, (error, response, body) => {
              //   console.log(response)
@@ -138,9 +229,14 @@ io.sockets.on("connection", socket => {
         else {
             io.emit("pump", arg);
             const url = "http://192.168.1.188/cm?cmnd=Power%20Off";
+            con.query(` UPDATE status SET pump_status = 'OFF' WHERE status.id = 1;`, function (err, result, fields) {
+    
+                // if (err) throw err;
+                //console.log(result[0]['fan_status']);
+            });
 
             request.get(url, (error, response, body) => {
-                console.log(response)
+                // console.log(response)
 
             });
             // httpGetAsync(url);
@@ -152,6 +248,11 @@ io.sockets.on("connection", socket => {
         if (arg == true) {
             io.emit("mist", arg);
             const url = "http://192.168.1.107/cm?cmnd=Power%20On";
+            con.query(` UPDATE status SET mist_status = 'ON' WHERE status.id = 1;`, function (err, result, fields) {
+    
+                // if (err) throw err;
+                //console.log(result[0]['fan_status']);
+            });
 
             request.get(url, (error, response, body) => {
               //  console.log(response)
@@ -163,6 +264,11 @@ io.sockets.on("connection", socket => {
         else {
             io.emit("mist", arg);
             const url = "http://192.168.1.107/cm?cmnd=Power%20Off";
+            con.query(` UPDATE status SET mist_status = 'OFF' WHERE status.id = 1;`, function (err, result, fields) {
+    
+                // if (err) throw err;
+                //console.log(result[0]['fan_status']);
+            });
 
             request.get(url, (error, response, body) => {
                // console.log(response)
