@@ -91,6 +91,40 @@
 
 	<br>
 	<br>
+	<br>
+	
+	<br>
+	
+	<br>
+	
+	<br>
+	
+	<br>
+	
+	<br>
+	
+	<br>
+	<br>
+	
+	<br>
+	
+		<br>
+		<br>
+	
+		<br>
+	
+		<br>
+	
+		<br>
+	
+			<br>
+			<br>
+	
+			<br>
+	
+			<br>
+	
+
 	<hr>
 	<!-- <center> -->
 	<div>
@@ -160,9 +194,385 @@
 
 
 	<br>
+	
+	<br>
+	
+	<br>
+	
+	<br>
+	
+	<br>
+	
+	<br>
+	
+	<br>
+	
+	<br>
+	
+	<br>
+	
+	<br>
+	
+	<br>
+	
+	<br>
+	
+	<br>
+	
+	<br>
+	<br>
+	
+	<br>
+	
+	<br>
 	<hr>
+	<div>
+		<h1>Scheduler</h1>
+	</div>
+
+    <div class="container">
+        <div class="btn-group">
+            <button id="grow">Grow Light</button>
+            <button id="water">Water Pump</button>
+            <button id="mist">Mist</button>
+            <button id="fan">Fan</button>
+        </div>
+
+    </div>
+    <br>
+    
+    <br><br>
+<div id="grow-light-form">
+    <form >
+        <div class="display">
+            <label for="displayTimeOn">Time to turn ON: </label>
+            <span class="displayTimeOn" id="displayTimeOn"></span>
+            <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+            <label for="displayTimeOff">Time to turn OFF: </label>
+            <span class="displayTimeOff" id="displayTimeOn"></span>
+    
+    
+        </div>
+        <br>
+    
+        <div class="inputs">
+    
+            <label for="time-on">&nbspSelect a time on:&nbsp</label>
+            <input class="form-select" type="time" id="time-on" name="Time_On" required />
+    
+            <label for="time-off">&nbsp&nbsp&nbspSelect a time off:&nbsp</label>
+            <input class="form-select" type="time" id="time-off" name="Time_Off" required />
+    
+            <br>
+    
+    
+        </div>
+    
+        <br>
+    
+        <div class="checklist">
+    
+            <input class="form-check-input" type="checkbox" id="select-all" />
+            <label class="form-check-label" for="Everyday"> <span>Everyday</span></label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="MondayHidden" name="Monday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Monday" name="Monday" />
+            <label class="form-check-label" for="Monday"> <span>Mon</span></label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="TuesdayHidden" name="Tuesday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Tuesday" name="Tuesday" />
+            <label class="form-check-label" for="Tuesday"> <span>Tue</span></label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="WednesdayHidden" name="Wednesday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Wednesday" name="Wednesday" />
+            <label class="form-check-label" for="Wednesday">
+                <span>Wed</span></label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="ThursdayHidden" name="Thursday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Thursday" name="Thursday" />
+            <label class="form-check-label" for="Thursday"> <span>Thu</span></label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="FridayHidden" name="Friday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Friday" name="Friday" />
+            <label class="form-check-label" for="Friday"> <span>Fri</span></label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="SaturdayHidden" name="Saturday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Saturday" name="Saturday" />
+            <label class="form-check-label" for="Saturday">
+                <span>Sat</span>
+            </label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="SundayHidden" name="Sunday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Sunday" name="Sunday" />
+            <label class="form-check-label" for="Sunday"> <span>Sun</span></label>
+    
+        </div>
+    
+    
+        <br>
+    
+        <br>
+        <div class="container">
+    
+            <!-- <button class="btn-submit">Set Schedule</button>
+                 -->
+            <button class="reset">Reset</button>
+    
+        </div>
+    
+    </form>
+</div>
+
+<div id="water-pump-form">
+    <form >
+        <div class="display">
+            <label for="displayTimeOn">Time to turn ON: </label>
+            <span class="displayTimeOn" id="displayTimeOn"></span>
+            <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+            <label for="displayTimeOff">Time to turn OFF: </label>
+            <span class="displayTimeOff" id="displayTimeOn"></span>
+    
+    
+        </div>
+        <br>
+    
+        <div class="inputs">
+    
+            <label for="time-on">&nbspSelect a time on:&nbsp</label>
+            <input class="form-select" type="time" id="time-on1" name="Time_On" required />
+    
+            <label for="time-off">&nbsp&nbsp&nbspSelect a time off:&nbsp</label>
+            <input class="form-select" type="time" id="time-off1" name="Time_Off" required />
+    
+            <br>
+    
+    
+        </div>
+    
+        <br>
+    
+        <div class="checklist">
+    
+            <input class="form-check-input" type="checkbox" id="select-all1" />
+            <label class="form-check-label" for="Everyday"> <span>Everyday</span></label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="MondayHidden" name="Monday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Monday1" name="Monday" />
+            <label class="form-check-label" for="Monday"> <span>Mon</span></label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="TuesdayHidden" name="Tuesday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Tuesday1" name="Tuesday" />
+            <label class="form-check-label" for="Tuesday"> <span>Tue</span></label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="WednesdayHidden" name="Wednesday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Wednesday1" name="Wednesday" />
+            <label class="form-check-label" for="Wednesday">
+                <span>Wed</span></label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="ThursdayHidden" name="Thursday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Thursday1" name="Thursday" />
+            <label class="form-check-label" for="Thursday"> <span>Thu</span></label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="FridayHidden" name="Friday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Friday1" name="Friday" />
+            <label class="form-check-label" for="Friday"> <span>Fri</span></label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="SaturdayHidden" name="Saturday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Saturday1" name="Saturday" />
+            <label class="form-check-label" for="Saturday">
+                <span>Sat</span>
+            </label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="SundayHidden" name="Sunday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Sunday1" name="Sunday" />
+            <label class="form-check-label" for="Sunday"> <span>Sun</span></label>
+    
+        </div>
+    
+    
+        <br>
+        <hr>
+        <br>
+        <div class="container">
+    
+            <!-- <button class="btn-submit">Set Schedule</button>
+                 -->
+            <button class="reset1">Reset</button>
+    
+        </div>
+    
+    </form>
+</div>
+
+<div id="mist-form">
+    <form >
+        <div class="display">
+            <label for="displayTimeOn">Time to turn ON: </label>
+            <span class="displayTimeOn" id="displayTimeOn"></span>
+            <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+            <label for="displayTimeOff">Time to turn OFF: </label>
+            <span class="displayTimeOff" id="displayTimeOn"></span>
+    
+    
+        </div>
+        <br>
+    
+        <div class="inputs">
+    
+            <label for="time-on">&nbspSelect a time on:&nbsp</label>
+            <input class="form-select" type="time" id="time-on2" name="Time_On" required />
+    
+            <label for="time-off">&nbsp&nbsp&nbspSelect a time off:&nbsp</label>
+            <input class="form-select" type="time" id="time-off2" name="Time_Off" required />
+    
+            <br>
+    
+    
+        </div>
+    
+        <br>
+    
+        <div class="checklist">
+    
+            <input class="form-check-input" type="checkbox" id="select-all2" />
+            <label class="form-check-label" for="Everyday"> <span>Everyday</span></label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="MondayHidden" name="Monday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Monday2" name="Monday" />
+            <label class="form-check-label" for="Monday"> <span>Mon</span></label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="TuesdayHidden" name="Tuesday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Tuesday2" name="Tuesday" />
+            <label class="form-check-label" for="Tuesday"> <span>Tue</span></label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="WednesdayHidden" name="Wednesday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Wednesday2" name="Wednesday" />
+            <label class="form-check-label" for="Wednesday">
+                <span>Wed</span></label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="ThursdayHidden" name="Thursday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Thursday2" name="Thursday" />
+            <label class="form-check-label" for="Thursday"> <span>Thu</span></label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="FridayHidden" name="Friday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Friday2" name="Friday" />
+            <label class="form-check-label" for="Friday"> <span>Fri</span></label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="SaturdayHidden" name="Saturday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Saturday2" name="Saturday" />
+            <label class="form-check-label" for="Saturday">
+                <span>Sat</span>
+            </label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="SundayHidden" name="Sunday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Sunday2" name="Sunday" />
+            <label class="form-check-label" for="Sunday"> <span>Sun</span></label>
+    
+        </div>
+    
+    
+        <br>
+        <hr>
+        <br>
+        <div class="container">
+    
+            <!-- <button class="btn-submit">Set Schedule</button>
+                 -->
+            <button class="reset2">Reset</button>
+    
+        </div>
+    
+    </form>
+</div>
+
+<div id="fan-form">
+    <form >
+        <div class="display">
+            <label for="displayTimeOn">Time to turn ON: </label>
+            <span class="displayTimeOn" id="displayTimeOn"></span>
+            <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+            <label for="displayTimeOff">Time to turn OFF: </label>
+            <span class="displayTimeOff" id="displayTimeOn"></span>
+    
+    
+        </div>
+        <br>
+    
+        <div class="inputs">
+    
+            <label for="time-on">&nbspSelect a time on:&nbsp</label>
+            <input class="form-select" type="time" id="time-on3" name="Time_On" required />
+    
+            <label for="time-off">&nbsp&nbsp&nbspSelect a time off:&nbsp</label>
+            <input class="form-select" type="time" id="time-off3" name="Time_Off" required />
+    
+            <br>
+    
+    
+        </div>
+    
+        <br>
+    
+        <div class="checklist">
+    
+            <input class="form-check-input" type="checkbox" id="select-all3" />
+            <label class="form-check-label" for="Everyday"> <span>Everyday</span></label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="MondayHidden" name="Monday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Monday3" name="Monday" />
+            <label class="form-check-label" for="Monday"> <span>Mon</span></label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="TuesdayHidden" name="Tuesday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Tuesday3" name="Tuesday" />
+            <label class="form-check-label" for="Tuesday"> <span>Tue</span></label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="WednesdayHidden" name="Wednesday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Wednesday3" name="Wednesday" />
+            <label class="form-check-label" for="Wednesday">
+                <span>Wed</span></label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="ThursdayHidden" name="Thursday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Thursday3" name="Thursday" />
+            <label class="form-check-label" for="Thursday"> <span>Thu</span></label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="FridayHidden" name="Friday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Friday3" name="Friday" />
+            <label class="form-check-label" for="Friday"> <span>Fri</span></label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="SaturdayHidden" name="Saturday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Saturday3" name="Saturday" />
+            <label class="form-check-label" for="Saturday">
+                <span>Sat</span>
+            </label>
+    
+            <input class="form-check-input" type="hidden" value="false" id="SundayHidden" name="Sunday" />
+            <input class="form-check-input" type="checkbox" value="true" id="Sunday3" name="Sunday" />
+            <label class="form-check-label" for="Sunday"> <span>Sun</span></label>
+    
+        </div>
+    
+    
+        <br>
+        <hr>
+        <br>
+        <div class="container">
+    
+            <!-- <button class="btn-submit">Set Schedule</button>
+                 -->
+            <button class="reset3">Reset</button>
+    
+        </div>
+    
+    </form>
+</div>
+
+
+
+    <br>
+
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="client.js"></script>
+	<script src="sched.js"></script>
 </body>
 
 </html>

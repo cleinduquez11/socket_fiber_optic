@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 16, 2023 at 11:03 AM
+-- Generation Time: Mar 17, 2023 at 11:29 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.31
 
@@ -20,6 +20,37 @@ SET time_zone = "+00:00";
 --
 -- Database: `try`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `schedule`
+--
+
+CREATE TABLE `schedule` (
+  `id` int(11) NOT NULL,
+  `actuators` varchar(255) NOT NULL,
+  `time_on` varchar(255) DEFAULT NULL,
+  `time_off` varchar(255) DEFAULT NULL,
+  `monday` tinyint(1) NOT NULL,
+  `tuesday` tinyint(1) NOT NULL,
+  `wednesday` tinyint(1) NOT NULL,
+  `thursday` tinyint(1) NOT NULL,
+  `friday` tinyint(1) NOT NULL,
+  `saturday` tinyint(1) NOT NULL,
+  `sunday` tinyint(1) NOT NULL,
+  `everyday` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `schedule`
+--
+
+INSERT INTO `schedule` (`id`, `actuators`, `time_on`, `time_off`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`, `everyday`) VALUES
+(1, 'Grow Light', '', '17:59', 0, 0, 0, 0, 1, 0, 0, 0),
+(2, 'Water Pump', '17:55', '18:07', 0, 1, 0, 0, 1, 0, 0, 0),
+(3, 'Mist', '19:06', '18:06', 0, 0, 0, 0, 0, 0, 0, 0),
+(4, 'fan', '19:05', '17:55', 0, 0, 0, 0, 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -112,11 +143,17 @@ CREATE TABLE `status` (
 --
 
 INSERT INTO `status` (`id`, `fan_status`, `light_status`, `pump_status`, `mist_status`) VALUES
-(1, 'OFF', 'OFF', 'OFF', 'OFF');
+(1, 'OFF', 'ON', 'OFF', 'OFF');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `schedule`
+--
+ALTER TABLE `schedule`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `sensorreadings1`
@@ -139,6 +176,12 @@ ALTER TABLE `status`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `schedule`
+--
+ALTER TABLE `schedule`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `sensorreadings1`
