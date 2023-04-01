@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2023 at 11:29 AM
+-- Generation Time: Apr 01, 2023 at 08:18 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.31
 
@@ -20,6 +20,61 @@ SET time_zone = "+00:00";
 --
 -- Database: `try`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `analytics`
+--
+
+CREATE TABLE `analytics` (
+  `id` int(255) NOT NULL,
+  `ROOM_TEMP` float NOT NULL,
+  `HUMIDITY` float NOT NULL,
+  `DATE` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `analytics`
+--
+
+INSERT INTO `analytics` (`id`, `ROOM_TEMP`, `HUMIDITY`, `DATE`) VALUES
+(1, 23, 78, '2023-03-26 10:11:24'),
+(2, 42, 14, '2023-03-27 10:11:24'),
+(3, 68, 49, '2023-03-28 10:11:50'),
+(4, 59, 79, '2023-03-29 10:11:59'),
+(5, 37, 48, '2023-03-30 10:12:16'),
+(6, 28, 25, '2023-03-31 10:12:29'),
+(7, 57, 89, '2023-04-01 10:13:22'),
+(9, 26, 34, '2023-04-02 11:43:26');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `analytics1`
+--
+
+CREATE TABLE `analytics1` (
+  `id` int(11) NOT NULL,
+  `EC` float NOT NULL,
+  `PH` float NOT NULL,
+  `WATER_TEMP` float NOT NULL,
+  `DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `analytics1`
+--
+
+INSERT INTO `analytics1` (`id`, `EC`, `PH`, `WATER_TEMP`, `DATE`) VALUES
+(2, 12, 12, 12, '2023-03-31 09:00:11'),
+(5, 12, 32, 12, '2023-03-30 08:57:04'),
+(7, 11, 25, 12, '2023-03-28 08:57:53'),
+(9, 56, 12, 43, '2023-03-27 08:58:45'),
+(11, 45, 23, 34, '2023-03-29 09:40:08'),
+(12, 56, 76, 89, '2023-03-26 09:42:43'),
+(13, 12, 56, 12, '2023-04-01 10:06:10'),
+(14, 6, 6, 34, '2023-04-02 11:44:04');
 
 -- --------------------------------------------------------
 
@@ -47,10 +102,11 @@ CREATE TABLE `schedule` (
 --
 
 INSERT INTO `schedule` (`id`, `actuators`, `time_on`, `time_off`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`, `everyday`) VALUES
-(1, 'Grow Light', '', '17:59', 0, 0, 0, 0, 1, 0, 0, 0),
-(2, 'Water Pump', '17:55', '18:07', 0, 1, 0, 0, 1, 0, 0, 0),
-(3, 'Mist', '19:06', '18:06', 0, 0, 0, 0, 0, 0, 0, 0),
-(4, 'fan', '19:05', '17:55', 0, 0, 0, 0, 1, 0, 0, 0);
+(1, 'Grow Light', '', '', 0, 0, 0, 0, 0, 0, 0, 0),
+(2, 'Water Pump', '', '', 0, 1, 0, 0, 0, 0, 0, 0),
+(3, 'Mist', '', '', 0, 0, 1, 0, 0, 0, 0, 0),
+(4, 'fan', '', '', 0, 0, 0, 1, 0, 0, 0, 0),
+(5, 'aerators', '16:41', '', 0, 0, 0, 0, 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -74,7 +130,9 @@ INSERT INTO `sensorreadings1` (`id`, `Water_Temperature`, `Ph_Value`, `Ec_Value`
 (2, 34, 23, 56),
 (3, 2102, 123, 34213),
 (4, 2102, 123, 34213),
-(5, 12, 5, 0);
+(5, 12, 5, 0),
+(6, 12, 5, 2),
+(7, 12, 5, 2);
 
 -- --------------------------------------------------------
 
@@ -135,19 +193,32 @@ CREATE TABLE `status` (
   `fan_status` varchar(255) NOT NULL,
   `light_status` varchar(255) NOT NULL,
   `pump_status` varchar(255) NOT NULL,
-  `mist_status` varchar(255) NOT NULL
+  `mist_status` varchar(255) NOT NULL,
+  `aerator` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `status`
 --
 
-INSERT INTO `status` (`id`, `fan_status`, `light_status`, `pump_status`, `mist_status`) VALUES
-(1, 'OFF', 'ON', 'OFF', 'OFF');
+INSERT INTO `status` (`id`, `fan_status`, `light_status`, `pump_status`, `mist_status`, `aerator`) VALUES
+(1, 'OFF', 'OFF', 'ON', 'ON', 'OFF');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `analytics`
+--
+ALTER TABLE `analytics`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `analytics1`
+--
+ALTER TABLE `analytics1`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `schedule`
@@ -178,16 +249,28 @@ ALTER TABLE `status`
 --
 
 --
+-- AUTO_INCREMENT for table `analytics`
+--
+ALTER TABLE `analytics`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `analytics1`
+--
+ALTER TABLE `analytics1`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `sensorreadings1`
 --
 ALTER TABLE `sensorreadings1`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `sensorreadings2`
