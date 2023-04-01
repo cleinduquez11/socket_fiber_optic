@@ -4,6 +4,8 @@ const fanController = document.querySelector("#switch");
 const lightController = document.querySelector("#switch1");
 const pumpController = document.querySelector("#switch2");
 const mistController = document.querySelector("#switch3");
+const aeratorController = document.querySelector("#switch4");
+
 
 const water_tempValue = document.querySelector("#WaterTemp");
 
@@ -70,18 +72,33 @@ var sundayController3 = document.getElementById('Sunday3');
 var checkboxes3 = document.querySelector('input[type="checkbox"]');
 var resetButton3 = document.querySelector('.reset3');
 
+var timeOnController4 = document.getElementById("time-on4");
+var timeOffController4 = document.getElementById("time-off4");
+var everydayController4 = document.getElementById('select-all4');
+var mondayController4 = document.getElementById('Monday4');
+var tuesdayController4 = document.getElementById('Tuesday4');
+var wednesdayController4 = document.getElementById('Wednesday4');
+var thursdayController4 = document.getElementById('Thursday4');
+var fridayController4 = document.getElementById('Friday4');
+var saturdayController4 = document.getElementById('Saturday4');
+var sundayController4 = document.getElementById('Sunday4');
+var checkboxes4 = document.querySelector('input[type="checkbox"]');
+var resetButton4 = document.querySelector('.reset4');
+
 
 
 var growButton = document.querySelector('#grow');
 var waterButton = document.querySelector('#water');
 var mistButton = document.querySelector('#mist');
 var fanButton = document.querySelector('#fan');
+var aeratorButton = document.querySelector('#aerator');
 
 
 const growLightForm = document.getElementById("grow-light-form");
 const waterPumpForm = document.getElementById("water-pump-form");
 const mistForm = document.getElementById("mist-form");
 const fanForm = document.getElementById("fan-form");
+const aeratorForm = document.getElementById("aerator-form");
 
 
 
@@ -89,6 +106,7 @@ growLightForm.style.display = "block";
 waterPumpForm.style.display = "none";
 mistForm.style.display = "none";
 fanForm.style.display = "none";
+aeratorForm.style.display = "none";
 
 // growButton.style.backgroundColor = 'red';
 // waterButton.style.backgroundColor = '#04AA6D';
@@ -109,7 +127,7 @@ timeOffController.addEventListener('change', function () {
 });
 
 everydayController.addEventListener('change', function () {
-    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    var checkboxes = document.querySelectorAll('.checklist input[type="checkbox"]');
     for (var checkbox of checkboxes) {
         checkbox.checked = this.checked;
     }
@@ -264,7 +282,7 @@ timeOffController1.addEventListener('change', function () {
 });
 
 everydayController1.addEventListener('change', function () {
-    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    var checkboxes = document.querySelectorAll('.checklist input[type="checkbox"]');
     for (var checkbox of checkboxes) {
         checkbox.checked = this.checked;
     }
@@ -416,7 +434,7 @@ timeOffController2.addEventListener('change', function () {
 });
 
 everydayController2.addEventListener('change', function () {
-    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    var checkboxes = document.querySelectorAll('.checklist input[type="checkbox"]');
     for (var checkbox of checkboxes) {
         checkbox.checked = this.checked;
     }
@@ -569,7 +587,7 @@ timeOffController3.addEventListener('change', function () {
 });
 
 everydayController3.addEventListener('change', function () {
-    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    var checkboxes = document.querySelectorAll('.checklist input[type="checkbox"]');
     for (var checkbox of checkboxes) {
         checkbox.checked = this.checked;
     }
@@ -707,6 +725,163 @@ socket.on('updatedEveryday3', function (args) {
 });
 
 
+
+
+
+
+//Form5 Aerator
+timeOnController4.addEventListener('change', function () {
+    socket.emit('timeOn4', timeOnController4.value);
+    console.log('time On: ' + timeOnController4.value);
+
+
+});
+
+timeOffController4.addEventListener('change', function () {
+    socket.emit('timeOff4', timeOffController4.value);
+    console.log('time Off: ' + timeOffController4.value);
+    // location.reload();
+});
+
+everydayController4.addEventListener('change', function () {
+    var checkboxes = document.querySelectorAll('.checklist input[type="checkbox"]');
+    for (var checkbox of checkboxes) {
+        checkbox.checked = this.checked;
+    }
+    socket.emit('everyday4', everydayController4.checked);
+});
+
+mondayController4.addEventListener('change', function () {
+    socket.emit('monday4', mondayController4.checked);
+    console.log(mondayController4.checked)
+});
+
+tuesdayController4.addEventListener('change', function () {
+    socket.emit('tuesday4', tuesdayController3.checked);
+    console.log(tuesdayController4.checked)
+});
+wednesdayController4.addEventListener('change', function () {
+    socket.emit('wednesday4', wednesdayController4.checked);
+    console.log(wednesdayController4.checked)
+});
+thursdayController4.addEventListener('change', function () {
+    socket.emit('thursday4', thursdayController4.checked);
+    console.log(thursdayController4.checked)
+});
+fridayController4.addEventListener('change', function () {
+    socket.emit('friday4', fridayController4.checked);
+    console.log(fridayController4.checked)
+});
+saturdayController4.addEventListener('change', function () {
+    socket.emit('saturday4', saturdayController4.checked);
+    console.log(saturdayController4.checked)
+});
+sundayController4.addEventListener('change', function () {
+    socket.emit('sunday4', sundayController4.checked);
+    console.log(sundayController4.checked)
+});
+
+socket.on('updatedTimeOn4', function (args) {
+    timeOnController4.value = args;
+
+});
+socket.on('updatedTimeOff4', function (args) {
+    timeOffController4.value = args;
+
+});
+
+socket.on('updatedMonday4', function (args) {
+    if (args == 1) {
+        mondayController4.setAttribute('Checked', 'Checked');
+        //mondayController3.value = true;   
+    } else {
+        mondayController4.removeAttribute('Checked');
+        // mondayController3.value = false;
+    }
+
+
+});
+
+socket.on('updatedTuesday4', function (args) {
+    if (args == 4) {
+        tuesdayController4.setAttribute('Checked', 'Checked');
+        //mondayController3.value = true;   
+    } else {
+        tuesdayController4.removeAttribute('Checked');
+        // mondayController3.value = false;
+    }
+
+
+});
+
+
+socket.on('updatedWednesday4', function (args) {
+    if (args == 1) {
+        wednesdayController4.setAttribute('Checked', 'Checked');
+        //mondayController3.value = true;   
+    } else {
+        wednesdayController4.removeAttribute('Checked');
+        // mondayController3.value = false;
+    }
+
+});
+
+socket.on('updatedThursday4', function (args) {
+    if (args == 1) {
+        thursdayController4.setAttribute('Checked', 'Checked');
+        //mondayController3.value = true;   
+    } else {
+        thursdayController4.removeAttribute('Checked');
+        // mondayController3.value = false;
+    }
+
+});
+
+socket.on('updatedFriday4', function (args) {
+    if (args == 1) {
+        fridayController4.setAttribute('Checked', 'Checked');
+        //mondayController3.value = true;   
+    } else {
+        fridayController4.removeAttribute('Checked');
+        // mondayController3.value = false;
+    }
+});
+
+socket.on('updatedSaturday4', function (args) {
+    if (args == 1) {
+        saturdayController3.setAttribute('Checked', 'Checked');
+        //mondayController3.value = true;   
+    } else {
+        saturdayController3.removeAttribute('Checked');
+        // mondayController3.value = false;
+    }
+});
+
+
+socket.on('updatedSunday4', function (args) {
+    if (args == 1) {
+        sundayController4.setAttribute('Checked', 'Checked');
+        //mondayController3.value = true;   
+    } else {
+        sundayController4.removeAttribute('Checked');
+        // mondayController3.value = false;
+    }
+});
+
+socket.on('updatedEveryday4', function (args) {
+    if (args == 1) {
+        for (var checkbox of checkboxes) {
+            checkbox.checked = this.checked;
+        }
+
+        //mondayController3.value = true;   
+    } else {
+        selectAll.removeAttribute('Checked');
+        // mondayController3.value = false;
+    }
+});
+
+
 growButton.addEventListener('click',function () {
     socket.emit('nav1',1)
 });
@@ -725,6 +900,10 @@ fanButton.addEventListener('click',function () {
     socket.emit('nav4',4)
 });
 
+aeratorButton.addEventListener('click',function () {
+    socket.emit('nav5',5)
+});
+
 resetButton.addEventListener('click',function () {
     socket.emit('reset',true)
 });
@@ -739,6 +918,11 @@ resetButton2.addEventListener('click',function () {
 resetButton3.addEventListener('click',function () {
     socket.emit('reset3',true)
 });
+
+resetButton4.addEventListener('click',function () {
+    socket.emit('reset4',true)
+});
+
 
 
 
@@ -755,14 +939,16 @@ socket.on('rq1', function (args) {
     saturdayController.checked = args[0]['saturday'];
     sundayController.checked = args[0]['sunday'];
     everydayController.checked = args[0]['everyday'];
-    growButton.style.backgroundColor = 'red';
-    waterButton.style.backgroundColor = '#04AA6D';
-    mistButton.style.backgroundColor = '#04AA6D';
-    fanButton.style.backgroundColor = '#04AA6D';
+    growButton.style.borderColor = '#04AA6D';
+    waterButton.style.borderColor = 'white';
+    mistButton.style.borderColor = 'white';
+    fanButton.style.borderColor = 'white';
+    aeratorButton.style.borderColor = 'white';
     growLightForm.style.display = "block";
     waterPumpForm.style.display = "none";
     mistForm.style.display = "none";
     fanForm.style.display = "none";
+    aeratorForm.style.display = "none";
 
 
 });
@@ -781,14 +967,16 @@ socket.on('rq2', function (args) {
     saturdayController1.checked = args[0]['saturday'];
     sundayController1.checked = args[0]['sunday'];
     everydayController1.checked = args[0]['everyday'];
-    growButton.style.backgroundColor = '#04AA6D';
-    waterButton.style.backgroundColor = 'red';
-    mistButton.style.backgroundColor = '#04AA6D';
-    fanButton.style.backgroundColor = '#04AA6D';
+    growButton.style.borderColor = 'white';
+    waterButton.style.borderColor = '#04AA6D';
+    mistButton.style.borderColor = 'white';
+    fanButton.style.borderColor = 'white';
+    aeratorButton.style.borderColor = 'white';
     growLightForm.style.display = "none";
     waterPumpForm.style.display = "block";
     mistForm.style.display = "none";
     fanForm.style.display = "none";
+    aeratorForm.style.display = "none";
 
 
 });
@@ -806,15 +994,16 @@ socket.on('rq3', function (args) {
     saturdayController2.checked = args[0]['saturday'];
     sundayController2.checked = args[0]['sunday'];
     everydayController2.checked = args[0]['everyday'];
-    growButton.style.backgroundColor = '#04AA6D';
-    waterButton.style.backgroundColor = '#04AA6D';
-    mistButton.style.backgroundColor = 'red';
-    fanButton.style.backgroundColor = '#04AA6D';
+    growButton.style.borderColor = 'white';
+    waterButton.style.borderColor = 'white';
+    mistButton.style.borderColor = '#04AA6D';
+    fanButton.style.borderColor = 'white';
+    aeratorButton.style.borderColor = 'white';
     growLightForm.style.display = "none";
     waterPumpForm.style.display = "none";
     mistForm.style.display = "block";
     fanForm.style.display = "none";
-
+    aeratorForm.style.display = "none";
 
 });
 
@@ -831,15 +1020,41 @@ socket.on('rq4', function (args) {
     saturdayController3.checked = args[0]['saturday'];
     sundayController3.checked = args[0]['sunday'];
     everydayController3.checked = args[0]['everyday'];
-    growButton.style.backgroundColor = '#04AA6D';
-    waterButton.style.backgroundColor = '#04AA6D';
-    mistButton.style.backgroundColor = '#04AA6D';
-    fanButton.style.backgroundColor = 'red'
+    growButton.style.borderColor = 'white';
+    waterButton.style.borderColor = 'white';
+    mistButton.style.borderColor = 'white';
+    fanButton.style.borderColor = '#04AA6D';
+    aeratorButton.style.borderColor = 'white';
     growLightForm.style.display = "none";
     waterPumpForm.style.display = "none";
     mistForm.style.display = "none";
     fanForm.style.display = "block";
+    aeratorForm.style.display = "none";
 
+});
+
+socket.on('rq5', function (args) {
+   
+    timeOnController4.value = args[0]['time_on'];
+    timeOffController4.value = args[0]['time_off'];
+    mondayController4.checked = args[0]['monday'];
+    tuesdayController4.checked = args[0]['tuesday'];
+    wednesdayController4.checked = args[0]['wednesday'];
+    thursdayController4.checked = args[0]['thursday'];
+    fridayController4.checked = args[0]['friday'];
+    saturdayController4.checked = args[0]['saturday'];
+    sundayController4.checked = args[0]['sunday'];
+    everydayController4.checked = args[0]['everyday'];
+    growButton.style.borderColor = 'white';
+    waterButton.style.borderColor = 'white';
+    mistButton.style.borderColor = 'white';
+    fanButton.style.borderColor = 'white';
+    aeratorButton.style.borderColor = '#04AA6D';
+    growLightForm.style.display = "none";
+    waterPumpForm.style.display = "none";
+    mistForm.style.display = "none";
+    fanForm.style.display = "none";
+    aeratorForm.style.display = "block";
 
 });
 
@@ -905,6 +1120,29 @@ mistController.addEventListener('change', function (e) {
     
     });
 
+    aeratorController.addEventListener('change', function (e) {
+        // console.log(this.checked);
+        if (this.checked == true) {
+    
+            socket.emit("aerator", true);
+    
+            // console.log(true);
+        } else {
+            socket.emit("aerator", false);
+            //console.log(false);
+        }
+    });
+    
+        socket.on('fan_status', (arg) => {
+            // console.log(arg);
+            if (arg == 'ON') {
+                fanController.setAttribute('Checked', 'Checked');
+            } else {
+                fanController.removeAttribute('Checked');
+            }
+        
+        });
+    
 
 
 
@@ -930,6 +1168,15 @@ socket.on('mist_status', (arg) => {
         mistController.setAttribute('Checked', 'Checked');
     } else {
         mistController.removeAttribute('Checked');
+    }
+
+});
+
+socket.on('aero_status', (arg) => {
+    if (arg == 'ON') {
+        aeratorController.setAttribute('Checked', 'Checked');
+    } else {
+        aeratorController.removeAttribute('Checked');
     }
 
 });
@@ -983,4 +1230,289 @@ socket.on('room_temp', (arg) => {
 });
 
 
+
+const labels1 = [];
+
+let water_temp = [];
+//let mock_data = [12,4,1,12.5,12.1,5,1];
+const today = new Date();
+for (let i = 6; i >= 0; i--) {
+  const date = new Date(today);
+  date.setDate(today.getDate() - i);
+  labels1.push(date.toLocaleDateString());
+ // labels2.push(date);
+}
+socket.emit('res', labels1);
+
+const ctx1 = document.getElementById("myChart1").getContext("2d");
+
+
+// Config Block
+
+socket.on('chart1', function(args) {
+    // for (let index = 0; index < args.length; index++) {
+    //    water_temp.push(parseFloat(args[index]));
+        
+    // }
+    //console.log(args);
+    var data1 = {
+        labels: labels1,
+        datasets: [
+          {
+            label: "WaterTemp",
+            backgroundColor: "#576CBC",
+            borderColor: "#576CBC",
+            data: args[0],
+            lineTension: 0.5,
+          },
+          {
+            label: "PH",
+            backgroundColor: "purple",
+            borderColor: "purple",
+            data: args[1],
+            lineTension: 0.5,
+          },
+          {
+            label: "EC",
+            backgroundColor: "orange",
+            borderColor: "orange",
+            data: args[2],
+            lineTension: 0.5,
+          },
+        
+        ],
+      };
+      
+    var config1 = {
+        type: "line",
+        data: data1,
+        options: {},
+      };
+// Render Block
+new Chart(ctx1, config1);
+    //console.log(water_temp);
+});
+
+
+
+
+const ctx2 = document.getElementById("myChart2").getContext("2d");
+const labels2 = [];
+const today2 = new Date();
+for (let i = 6; i >= 0; i--) {
+  const date2 = new Date(today2);
+  date2.setDate(today2.getDate() - i);
+  labels2.push(date2.toLocaleDateString());
+  
+}
+socket.emit('res2', labels2);
+
+socket.on('chart2', function(args) {
+ 
+   
+  
+    const data2 = {
+      labels: labels2,
+      datasets: [
+        {
+          label: "Room Temperature",
+          backgroundColor: "#8F43EE",
+          borderColor: "#8F43EE",
+          data: args[0],
+          lineTension: 0.5,
+        },
+        {
+            label: "Humidity",
+            backgroundColor: "yellow",
+            borderColor: "yellow",
+            data: args[1],
+            lineTension: 0.5,
+          },
+      ],
+    };
+    // Config Block
+    const config2 = {
+      type: "line",
+      data: data2,
+      options: {},
+    };
+
+    // Render Block
+    new Chart(ctx2, config2);
+    //console.log(water_temp);
+});
+
+
+
+//const socket = io.connect(window.location.origin)
+        // Initialize Flatpickr date range selector
+        const startDatePicker = flatpickr('#startDate', { dateFormat: 'Y-M-d ' });
+        const endDatePicker = flatpickr('#endDate', { dateFormat: 'Y-M-d' });
+        let dates = [];
+        // Add form submit event listener
+        const form = document.querySelector('.date-range');
+        form.addEventListener('submit', function(event) {
+          event.preventDefault();
+          
+          // Get start and end date values from the date range selector
+          const startDate = startDatePicker.selectedDates[0];
+          const endDate = endDatePicker.selectedDates[0];
+        dates.push(startDate.toString(),endDate.toString());
+         socket.emit('fetch-dates', dates );
+
+          socket.on('return-data', function (args) {
+
+       
+
+
+              const mappedArr = args.map(innerArr => {
+                var ph = innerArr['PH'];
+                var ec = innerArr['EC'];
+                var water_temp = innerArr['WATER_TEMP'];
+                var dateStr= innerArr['DATE'];
+                var date = new Date(dateStr);
+                var formattedDate = date.toLocaleDateString('en-US', {
+                    month: '2-digit',
+                    day: '2-digit',
+                    year: 'numeric'
+                  });
+          
+                  return [ph,ec,water_temp,formattedDate];
+                 
+              });
+
+            
+              console.log(mappedArr);
+             
+              
+              const headers = ['pH', 'EC', 'Water Temp', 'Date'];
+                const dataWithHeaders = [headers, ...mappedArr];
+    
+              // Create a new workbook
+              const workbook = XLSX.utils.book_new();
+              
+              // Convert the filtered data to a worksheet
+              const worksheet = XLSX.utils.aoa_to_sheet(dataWithHeaders);
+              
+              // Add the worksheet to the workbook
+              XLSX.utils.book_append_sheet(workbook, worksheet, 'Data');
+              
+              // Export the workbook to an Excel file
+              const wbout = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' });
+              const blob = new Blob([s2ab(wbout)], { type: 'application/octet-stream' });
+              const filename = 'water_info.xlsx';
+              if (typeof window.navigator.msSaveBlob !== 'undefined') {
+                // IE workaround
+                window.navigator.msSaveBlob(blob, filename);
+              } else {
+                // Use download attribute of HTML5 a tag to simulate a download
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                setTimeout(() => {
+                  document.body.removeChild(a);
+                  URL.revokeObjectURL(url);
+                }, 0);
+              }
+            });
+            // Utility function to convert a string to ArrayBuffer
+     
+    
+          });
+          function s2ab(s) {
+            const buf = new ArrayBuffer(s.length);
+            const view = new Uint8Array(buf);
+            for (let i = 0; i < s.length; i++) {
+              view[i] = s.charCodeAt(i) & 0xFF;
+            }
+            return buf;
+          }
+
+          const startDatePicker1 = flatpickr('#startDate1', { dateFormat: 'Y-M-d ' });
+          const endDatePicker1 = flatpickr('#endDate1', { dateFormat: 'Y-M-d' });
+          let dates1 = [];
+          // Add form submit event listener
+          const form1 = document.querySelector('.date-range1');
+          form1.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Get start and end date values from the date range selector
+            const startDate1 = startDatePicker1.selectedDates[0];
+            const endDate1 = endDatePicker1.selectedDates[0];
+          dates1.push(startDate1.toString(),endDate1.toString());
+           socket.emit('fetch-dates1', dates1 );
+            socket.on('return-data1', function(args1) {
+
+
+                    const mappedArr1 = args1.map(innerArr1 => {
+                        var humidity = innerArr1['HUMIDITY'];
+                        var roomtemp = innerArr1['ROOM_TEMP'];
+                        var dateStr= innerArr1['DATE'];
+                        var date = new Date(dateStr);
+                        var formattedDate = date.toLocaleDateString('en-US', {
+                            month: '2-digit',
+                            day: '2-digit',
+                            year: 'numeric'
+                        });
+                
+                //  console.log(innerArr1['HUMIDITY']);
+                return [humidity, roomtemp,formattedDate];
+            
+                    });
+                        console.log(mappedArr1);
+
+                    
+
+                    // console.log(mappedArr);
+
+                    // const filteredData = args.filter(row => {
+                    //     const date = new Date(row[5]);
+                    //     return date >= startDate && date <= endDate;
+                    //   });
+                    
+                    const headers = ['Humidity', 'Room Temperature', 'Date'];
+                        const dataWithHeaders = [headers, ...mappedArr1];
+
+                    // Create a new workbook
+                    const workbook = XLSX.utils.book_new();
+                    
+                    // Convert the filtered data to a worksheet
+                    const worksheet = XLSX.utils.aoa_to_sheet(dataWithHeaders);
+                    
+                    // Add the worksheet to the workbook
+                    XLSX.utils.book_append_sheet(workbook, worksheet, 'Data');
+                    
+                    // Export the workbook to an Excel file
+                    const wbout = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' });
+                    const blob = new Blob([s2ab(wbout)], { type: 'application/octet-stream' });
+                    const filename = 'environment_info.xlsx';
+                    if (typeof window.navigator.msSaveBlob !== 'undefined') {
+                        // IE workaround
+                        window.navigator.msSaveBlob(blob, filename);
+                    } else {
+                        // Use download attribute of HTML5 a tag to simulate a download
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = filename;
+                        document.body.appendChild(a);
+                        a.click();
+                        setTimeout(() => {
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                        }, 0);
+                    }
+                
+            })
+          
+
+          });
+          
+          
+          // Filter the data based on the date range
+         
+// console.log(labels1);
 
